@@ -1,0 +1,24 @@
+[package]
+name = "avr-tiny-rs"
+version = "0.1.0"
+edition = '2018'
+
+[dependencies]
+panic-halt = "0.2.0"
+tiny = { git = "https://github.com/ryanplusplus/tiny.rs", rev = "10a84cb" }
+
+[dependencies.avr-device]
+version = "0.3.0"
+features = ["atmega328p", "rt"]
+
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
